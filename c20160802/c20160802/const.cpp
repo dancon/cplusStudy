@@ -17,6 +17,7 @@ int main() {
 	try
 	{
 		double dval2 = 3.14;
+
 		// int &rint1 = dval2; // 编译时报错
 	}
 	catch (const std::exception&)
@@ -36,6 +37,32 @@ int main() {
 
 	riv = 25;
 	std::cout << ri1 << std::endl;
+
+	// 常量指针
+	int errNo = 0;
+	int *const curErr = &errNo; // 常量指针是指针的值不变，而不是指向的对象值不能变
+	const double pi = 3.14;
+	const double *const pip = &pi;
+	std::cout << curErr << std::endl;
+	std::cout << pip << std::endl;
+
+	std::cout << *curErr << std::endl;
+
+	*curErr = 5;  // 通过常量指针来修改指向对象的值
+	std::cout << errNo << std::endl; 
+
+	// 尝试修改常量指针的值是会报错的 // C3892: 不能给常量赋值
+	int test = 4;
+	// curErr = &test;
+
+	// int index = -1, &r = 0; // 引用的初始值必须是一个对象，引用是一个对象的别名
+
+	const int ic = 50, &ric = ic;
+	std::cout << i << " 他的引用：" << ric << std::endl;
+
+	const int *pic = &ic;
+	std::cout << "变量ic的地址：" << pic << " 内存中变量的值：" << *pic << std::endl;
+
 
 	std::getchar();
 }
