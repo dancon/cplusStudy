@@ -1,0 +1,4 @@
+﻿  const.cpp
+d:\john\study\cplusstudy\c20160802\c20160802\const.cpp(13): warning C4244: “初始化”: 从“double”转换到“const int”，可能丢失数据
+  c20160802.vcxproj -> D:\John\study\cplusStudy\c20160802\Debug\c20160802.exe
+  c20160802.vcxproj -> D:\John\study\cplusStudy\c20160802\Debug\c20160802.pdb (Full PDB)
