@@ -34,5 +34,11 @@ int main() {
 	cout << (grade < 60) ? "fail" : "pass"; // 输出0
 	// cout << grade < 60 ? "fail" : "pass";  // 编译报错
 
+	// sizeof 运算符对一个类型求值时，应该将为类型加个括号（表达式），sizeof返回字节数
+	auto intSize = sizeof (int);
+	cout << "int 类型的大小：" << intSize << endl;
+
+	cout << "str的大小是：" << sizeof str << endl;
+
 	getchar();
 }
