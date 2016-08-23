@@ -23,7 +23,7 @@ using namespace std;
 	extern int a;  // 编译器不会给 a 分配内存空间
 */
 
-int main() {
+int main(int argc, char *argv[]) {
 	// function 学习
 	cout << "5 + 7 = " << add(5, 7) << endl;
 
@@ -34,5 +34,35 @@ int main() {
 
 	changeFlag(FUNC_FLAG);
 	cout << "修改后FUNC_FLAG = " << FUNC_FLAG << endl;
-	getchar();
+	// getchar();
+
+	cout << "从控制台输入的参数为如下：" << endl;
+
+	cout << "总数为：" << argc << endl;
+
+	// main 函数通过 main 的两个形参接收从控制台输入的参数
+	// argc 是参数的总数
+	// argv 是指向 C 风格的字符的数组
+	string ret, ret1;
+	while (*argv != 0) {
+		cout << "debug:" << *argv << endl;
+		char *item = *argv;
+		string strItem;
+		cout << "debug:item:" << *item << endl;
+
+		// 其实这里可以简化，我们可以直接用 C 风格的字符串给string对象赋值:允许使用一个空字符结尾的 char 数字为 string 赋值或参与 复合运算
+		ret1 += *argv;
+		ret1 += ",";
+
+		while (*item) {
+			strItem += *item;
+			item++;
+		}
+		argv++;
+		ret += strItem + ",";
+	}
+
+	cout << "拼好的串：" << ret << endl;
+
+	cout << "另一种：" << ret1 << endl;
 }
