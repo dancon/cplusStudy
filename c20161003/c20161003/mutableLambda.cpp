@@ -2,8 +2,19 @@
 #include <vector>
 #include <algorithm>
 #include <string>
+#include <functional>
 using namespace std;
+using namespace std::placeholders;
 
+// bind 参数
+bool check_size(const string &s, string::size_type sz) {
+	return s.size() >= sz;
+}
+
+// 绑定 参数引用
+ostream &print(ostream &os, const string &s, char c) {
+	return os << s << c;
+}
 int main() {
 
 	size_t v1 = 42;
@@ -48,5 +59,20 @@ int main() {
 
 	cout << "修改后：" << endl;
 	for_each(vi.begin(), vi.end(), fn3);
+	cout << endl;
+
+	// bind
+	size_t sz1 = 6;
+
+	// 绑定函数参数的占位符 _1 都是定义在 std 命名空间的 placeholders 中
+	auto check = bind(check_size, _1, sz1);
+	vector<string> vs = { "hello", "this", "is", "a", "beautiful", "world" };
+	auto index = find_if(vs.begin(), vs.end(), check);
+
+	cout << "长度大于" << sz1 << "的字符是：" << *index << endl;
+
+	// 绑定引用
+	// 当使用 bind 方法绑定一个变量的引用的时候，必须使用 ref 来进行转换
+	for_each(vs.begin(), vs.end(), bind(print, ref(cout), _1, ' '));
 	getchar();
 }
